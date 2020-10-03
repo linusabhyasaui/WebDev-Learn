@@ -1,8 +1,6 @@
 <HTML>
 <Head>
-	<!  
-		
-		>
+	<!  >
 	<style type="text/css">
 		body {
 			background-color: FFE88C;
@@ -11,8 +9,7 @@
 		}
 		nav {
 			border: 1px solid black;
-			align-items: flex-start;
-			vertical-align: bottom; 
+			align-items: bottom; 
 			height: 60px;
 		}
 		div {
@@ -26,14 +23,19 @@
 		}
 		.content {
 			width:  1000px;
-			height: ;
-			align-self: center;
+			height: 1200px;
 			background-image: url('static/bg.png');
+			position: absolute;
+			transform: translate(30%);
+		}
+		footer {
+			margin-top: 5%;
 		}
 		
 		img.rounded {
 			border-radius: 50%;
 			background-color: ffffff;
+			border: 1px solid black;
 		}
 		#l_image {
 			width: 	255px;
@@ -63,55 +65,59 @@
 			margin: 0; 
 			padding: 0;
 		}
-		#container {
-			height: 100%; 
+		.container {
+			height: 400px; 
 			width: 1000px; 
 			font-size: 0;
+			justify-content: center;
 		}
 		#left, #middle, #right {
-			display: inline-block; 
-			*display: inline; 
 			zoom: 1; 
 			vertical-align: top; 
 			font-size: 12px;
+			display: inline-block;
+			buffer: 5%;
 		}
 		#left {
 			width: ; 
 			background: ;
-			height: 100%;
+			height: ;
+			align-self: left;
+			transform: translate(20%);
 		}
 		#middle {
 			width: ; 
 			background: ;
-			height: 100%;
+			height: ;
+			align-self: center;
+			transform: translate(50%);
 		}
 		#right {
 			width: ; 
 			background: ;
-			height: 100%;
+			height: ;
+			align-self: right;
+			transform: translate(80%);
 		}
 	</style>
 	<title> Linus </title>
 </Head>
 <Body> 
 	<nav> <!Navbar>
-		<div class="buffer" id="left"> <!buffer> </div>
-		<div id="left"> <!left>
-			<button> Profile </button>
-			<button> Skills </button>
-			<button> Education </button>
+		<div id="left" style="transform: translate(90%, 100%);"> <!left>
+			<button onclick="window.location.href='#Profile';"> Profile </button>
+			<button onclick="window.location.href='#Skills';"> Skills </button>
+			<button onclick="window.location.href='#Education';"> Education </button>
 		</div>
-		<div id="right"> <!right>
-			<button id="contact"> Contact </button>
+		<div id="right" style="transform: translate(770%, 100%);"> <!right>
+			<button id="contact" onclick="window.location.href='#Info';"> Contact </button>
 		</div>
-		<div class="buffer" id="right"> <!buffer> </div>
 	</nav>
 	<div> <!Content>
-		<div class="buffer" id="left"> <!buffer> </div>
-		<div class="content" id="middle"> <!center>
-			<section id="container"> <!Profile>
+		<div class="content"> <!center>
+			<section class="container" id="Profile" style="margin-left: 20px; margin-right: 20px; margin-top: 40;"> <!Profile>
 				<section id="left"> <!Image>
-					<img src="static/Profile.png" background-color=00ff00 style="width:300px;height:320px;"></img>
+					<img src="static/Profile.png" background-color=00ff00 style="height:320px;"></img>
 				</section>
 				<section id="right"> <!Data>
 					<header> Linus Abhyasa Wicaksana </header>
@@ -124,21 +130,21 @@
 					</article>
 				</section>
 			</section>
-			<section id="container"> <!Skills>
-				<section id="left">
+			<section class="container" id="Skills" style="margin-top: +20px; height: 300px;"> <!Skills>
+				<section id="left" style="transform: translate(50%);">
 					<img class="rounded" id="s_image"  src="static/programming-skill.png"></img>
 					<p> PROGRAMMING </p>
 				</section>
-				<section id="middle">
+				<section id="middle" style="transform: translate(150%);">
 					<img class="rounded" id="s_image"  src="static/writing-skill.png"></img>
 					<p> WRITING </p>
 				</section>
-				<section id="right">
+				<section id="right" style="transform: translate(250%);">
 					<img class="rounded" id="s_image"  src="static/diving-skill.png"></img>
 					<p> DIVING </p>
 				</section>
 			</section>
-			<section id="container"> <!Education>
+			<section class="container" id="Education"> <!Education>
 				<section id="left">
 					<img class="rounded" id="l_image"  src="static/CC-school.png"></img>
 					<p> Canisius College
@@ -157,18 +163,14 @@
 						<br> 2019-Now 
 					</p>
 				</section>
-				<footer>
-					<div> <!top>
+				<footer id="Info">
+					<div id="right"> <!top>
 						Contact Info
-						<br> Email: linus.abhyasa@ui.ac.id
-					</div>
-					<div> <!line> </div>
-					<div> <!bot> 
+						<br>  <a href="mailto:linus.abhyasa@ui.ac.id">Email: linus.abhyasa@ui.ac.id</a> 
 					</div>
 				</footer>
 			</section>
 		</div>
-		<div class="buffer" id="right"> <!buffer> </div>
 	</div>
 </Body>
 </HTML>
