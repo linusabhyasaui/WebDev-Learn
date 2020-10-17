@@ -46,10 +46,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="{% url 'add' %}">Add</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'view' %}">View</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -62,14 +65,6 @@
     </div>
 </nav>
 
-<main role="main" class="container">
-    <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll,
-            this navbar remains in its original position and moves with the rest of the page.</p>
-        <a class="btn btn-lg btn-primary" href="../components/navbar/" role="button">View navbar docs &raquo;</a>
-    </div>
-</main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -77,5 +72,9 @@
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
 {% block content %}{% endblock %}
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">Made by Linus with Bootstrap</p>
+        </footer>
 </body>
 </html>

@@ -12,6 +12,11 @@ def index(request):
 
 # TODO:
 def lesson_add(request):
+    all_lessons = Lessons.objects.all()
+    lesson_count = Lessons.objects.all().count()
+
+    context = {'all_lessons': all_lessons}
+    context = {'lesson_count': lesson_count}
     return render(request, "lesson_add.html")
 
 

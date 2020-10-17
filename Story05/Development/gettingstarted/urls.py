@@ -16,8 +16,11 @@ admin.autodiscover()
 
 urlpatterns = [
     path("", lessons.views.index, name="index"),
-    path("db/", hello.views.db, name="db"),
-    path("admin/", admin.site.urls),
+    path("/clear", lessons.views.lesson_wipe, name="wipe"),
+    path("schedule/", lessons.views.lesson_add, name="add"),
     path("schedule/add", lessons.views.lesson_add, name="add"),
     path("schedule/view", lessons.views.lesson_view, name="view"),
+
+    path("db/", hello.views.db, name="db"),
+    path("admin/", admin.site.urls),
 ]
