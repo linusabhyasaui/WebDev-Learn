@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import django_heroku
+from django.contrib import admin
+from django.urls import include, path
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -39,7 +41,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "hello",
     "lessons",
 ]
 

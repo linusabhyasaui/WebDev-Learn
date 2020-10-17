@@ -2,7 +2,6 @@ from django.urls import path, include
 
 from django.contrib import admin
 import lessons.views
-import hello.views
 
 admin.autodiscover()
 
@@ -16,8 +15,9 @@ admin.autodiscover()
 
 urlpatterns = [
     path("", lessons.views.index, name="index"),
-    path("db/", hello.views.db, name="db"),
+
+    path("schedule/", include('lessons.urls'), name="schedule"),
+
+    path("db/", lessons.views.db, name="db"),
     path("admin/", admin.site.urls),
-    path("schedule/add", lessons.views.lesson_add, name="add"),
-    path("schedule/view", lessons.views.lesson_view, name="view"),
 ]

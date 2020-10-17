@@ -16,7 +16,7 @@ def index(request):
 def add_lesson(request):
     try:
         all_lessons = Lesson.objects.all()
-        flag = all_lessons.get(0).DoesNotExist
+        all_lessons.get(0).DoesNotExist
     except Exception as e:
         return render(request, "lessons_add_new.html")
 
@@ -28,10 +28,11 @@ def add_lesson(request):
 def lesson_view(request):
     try:
         all_lessons = Lesson.objects.all()
-    except not all_lessons.exists():
-        raise Http404("Question does not exist")
-
-    context = {'all_lessons': all_lessons}
+        all_lessons.get(0).DoesNotExist
+    except Exception as e:
+        context = {'all_lessons': 0}
+    else:
+        context = {'all_lessons': all_lessons}
 
     return render(request, "lessons_view.html", context)
 
