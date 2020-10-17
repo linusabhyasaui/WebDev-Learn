@@ -13,9 +13,12 @@ admin.autodiscover()
 #
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
+app_name = 'lessons'
 urlpatterns = [
     path("", lessons.views.index, name="index"),
-    path("clear", lessons.views.lesson_wipe, name="wipe"),
-    path("add", lessons.views.lesson_add, name="add"),
-    path("view", lessons.views.lesson_view, name="view"),
+    path("delete_lesson", lessons.views.lesson_wipe, name="clear_lesson"),
+    path("add_lesson", lessons.views.add_lesson, name="add_lesson"),
+    path("view_lesson", lessons.views.lesson_view, name="view_lesson"),
+    path("add", lessons.views.add, name="add"),
+    path("delete", lessons.views.delete, name="delete"),
 ]

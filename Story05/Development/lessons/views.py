@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, Http404
 
 from .models import Lesson
 
@@ -13,45 +13,23 @@ def index(request):
     return render(request, "lessons_home.html")
 
 
-# TODO: input
-def lesson_add(request):
-    # return HttpResponse("Hello, world. You're at the lessons index.")
-    all_lessons = 0
-    all_lessons = Lesson.objects.all()
-
-    if not all_lessons:
-        return HttpResponse('')
+def add_lesson(request):
+    try:
+        all_lessons = Lesson.objects.all()
+        flag = all_lessons.get(0).DoesNotExist
+    except Exception as e:
+        return render(request, "lessons_add_new.html")
 
     lesson_count = Lesson.objects.all().count()
-
-    context = {'all_lessons': all_lessons}
-    context = {'lesson_count': lesson_count}
+    context = {'all_lessons': all_lessons, 'lesson_count': lesson_count}
     return render(request, "lessons_add.html", context)
 
 
-# def contact(request):
-#     if request.method == 'POST': # If the form has been submitted...
-#         form = ContactForm(request.POST) # A form bound to the POST data
-#         if form.is_valid(): # All validation rules pass
-#             # Process the data in form.cleaned_data
-#             # ...
-#
-#             print form.cleaned_data['my_form_field_name']
-#
-#             return HttpResponseRedirect('/thanks/') # Redirect after POST
-#     else:
-#         form = ContactForm() # An unbound form
-#
-#     return render_to_response('lessons_add.html', {
-#         'form': form,
-#     })
-
 def lesson_view(request):
-    all_lessons = 0
-    all_lessons = Lesson.objects.all()
-
-    if not all_lessons:
-        return HttpResponse('')
+    try:
+        all_lessons = Lesson.objects.all()
+    except not all_lessons.exists():
+        raise Http404("Question does not exist")
 
     context = {'all_lessons': all_lessons}
 
@@ -59,24 +37,40 @@ def lesson_view(request):
 
 
 def lesson_wipe(request):
-    all_lessons = 0
-    all_lessons = Lesson.objects.all()
-
-    if not all_lessons:
-        return HttpResponse('')
+    try:
+        all_lessons = Lesson.objects.all()
+    except not all_lessons.exists():
+        raise Http404("Question does not exist")
 
     lesson_count = Lesson.objects.all().count()
-
-    context = {'all_lessons': all_lessons}
-    context = {'lesson_count': lesson_count}
-    # TODO: deletion
-    Lesson.objects.filter(name=id).delete()
-
+    context = {'all_lessons': all_lessons, 'lesson_count': lesson_count}
     return render(request, "lessons_delete.html", context)
 
 
 def db(request):
     all_lessons = Lesson.objects.all()
     all_lessons.save()
-
     return render(request, "db.html", {"lessons": all_lessons})
+
+
+def add(request):
+    the_values = {
+        "key": "the_values"
+    }
+    for key, value in request.POST.items():
+        the_values[key] = value
+
+    new_lesson = Lesson(name=the_values["lesson"], lecturer=the_values["lecturer"],
+                        description=the_values["description"], sks=the_values["credits"], room=the_values["room"],
+                        semester=the_values["semester"])
+
+    new_lesson.save()
+    return redirect('lessons:view_lesson')
+
+
+def delete(request):
+    name = request.POST.get("name")
+    lessons = Lesson.objects.all()
+    lesson = lessons.filter(name=name)
+    lesson.delete()
+    return redirect('lessons:view_lesson')
