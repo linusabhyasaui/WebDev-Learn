@@ -1,0 +1,27 @@
+{% extends "lessons.html" %}
+{% load static %}
+
+{% block content %}
+
+    <h1>List of Lessons</h1>
+    <div class="row mb-3">
+        <div class="col-md-3 themed-grid-col">Lesson</div>
+        <div class="col-md-3 themed-grid-col">Lecturer</div>
+        <div class="col-md-2 themed-grid-col">SKS</div>
+        <div class="col-md-3 themed-grid-col">Room</div>
+        <div class="col-md-4 themed-grid-col">Semester</div>
+        <div class="col-md-6 themed-grid-col">Description</div>
+    </div>
+
+    {% for lesson in all_lessons %}
+        <div class="row mb-3">
+            <div class="col-md-3 themed-grid-col">{{ lesson.name }}</div>
+            <div class="col-md-3 themed-grid-col">{{ lesson.lecturer }}</div>
+            <div class="col-md-2 themed-grid-col">{{ lesson.sks }}</div>
+            <div class="col-md-3 themed-grid-col">{{ lesson.room }}</div>
+            <div class="col-md-4 themed-grid-col">{{ lesson.semester }}</div>
+            <div class="col-md-6 themed-grid-col">{{ lesson.description }}</div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
