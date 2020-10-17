@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Lessons
+from .models import Lesson
 
 
 # Create your views here.
@@ -15,16 +15,18 @@ def index(request):
 
 # TODO: input
 def lesson_add(request):
-    all_lessons = Lessons.objects.all()
+    # return HttpResponse("Hello, world. You're at the lessons index.")
+    all_lessons = 0
+    all_lessons = Lesson.objects.all()
 
     if not all_lessons:
         return HttpResponse('')
 
-    lesson_count = Lessons.objects.all().count()
+    lesson_count = Lesson.objects.all().count()
 
     context = {'all_lessons': all_lessons}
     context = {'lesson_count': lesson_count}
-    return render(request, "lesson_add.html", context)
+    return render(request, "lessons_add.html", context)
 
 
 # def contact(request):
@@ -45,27 +47,36 @@ def lesson_add(request):
 #     })
 
 def lesson_view(request):
-    all_lessons = Lessons.objects.all()
+    all_lessons = 0
+    all_lessons = Lesson.objects.all()
 
     if not all_lessons:
         return HttpResponse('')
 
     context = {'all_lessons': all_lessons}
 
-    return render(request, "lesson_view.html", context)
+    return render(request, "lessons_view.html", context)
 
 
 def lesson_wipe(request):
-    all_lessons = Lessons.objects.all()
+    all_lessons = 0
+    all_lessons = Lesson.objects.all()
 
     if not all_lessons:
         return HttpResponse('')
 
-    lesson_count = Lessons.objects.all().count()
+    lesson_count = Lesson.objects.all().count()
 
     context = {'all_lessons': all_lessons}
     context = {'lesson_count': lesson_count}
     # TODO: deletion
-    Lessons.objects.filter(name=id).delete()
+    Lesson.objects.filter(name=id).delete()
 
     return render(request, "lessons_delete.html", context)
+
+
+def db(request):
+    all_lessons = Lesson.objects.all()
+    all_lessons.save()
+
+    return render(request, "db.html", {"lessons": all_lessons})

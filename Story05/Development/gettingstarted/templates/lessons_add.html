@@ -1,0 +1,103 @@
+{% extends "lessons.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Checkout form</h2>
+            <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form
+                group has a validation state that can be triggered by attempting to submit the form without completing
+                it.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your lessons</span>
+                    <span class="badge badge-secondary badge-pill">{{ lesson_count }}</span>
+                </h4>
+
+                <ul class="list-group mb-3">
+                    {% for lesson in all_lessons %}
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{ lesson.name }}</h6>
+                                <small class="text-muted">{{ lesson.semester }}</small>
+                            </div>
+                            <span class="text-muted">{{ lesson.sks }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Add lesson</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName">Lesson name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid lesson name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Lecturer</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid Lecturer is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email">Description <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" placeholder="">
+                        <div class="invalid-feedback">
+                            Please enter a lesson description.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address">Credits</label>
+                        <input type="text" class="form-control" id="address" placeholder="12" required>
+                        <div class="invalid-feedback">
+                            Please enter a number of credits.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address2">Lesson room <span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="state">Semester</label>
+                            <select class="custom-select d-block w-100" id="state" required>
+                                <option value="">Choose...</option>
+                                <option>2018/2019</option>
+                                <option>2019/2020</option>
+                                <option>2020/2021</option>
+                                <option>2021/2022</option>
+                                <option>2022/2023</option>
+                                <option>2023/2024</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid semester.
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Add lesson</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="form-validation.js"></script></body>
+{% endblock %}
