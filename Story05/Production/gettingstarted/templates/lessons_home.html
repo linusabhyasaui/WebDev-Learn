@@ -1,0 +1,14 @@
+{% extends "lessons.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">Lessons, Register them</h1>
+            <p class="lead">
+                <a href="{% url 'add' %}" class="btn btn-lg btn-secondary">Add</a>
+                <a href="{% url 'view' %}" class="btn btn-lg btn-secondary">View</a>
+            </p>
+        </main>
+    </div>
+{% endblock %}

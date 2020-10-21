@@ -26,12 +26,10 @@ def add_lesson(request):
 
 
 def lesson_view(request):
-    try:
-        all_lessons = Lesson.objects.all()
-        all_lessons.get(0).DoesNotExist
-    except Exception as e:
+    if Lesson.objects.exists():
         context = {'all_lessons': 0}
     else:
+        all_lessons = Lesson.objects.all()
         context = {'all_lessons': all_lessons}
 
     return render(request, "lessons_view.html", context)
